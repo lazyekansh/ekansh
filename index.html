@@ -213,125 +213,1442 @@
             background: rgba(255, 255, 255, 0.1);
             color: #f5f5dc;
         }
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-            }
-            #about {
-                flex-direction: column;
-                text-align: center;
-            }
-            .social-links {
-                flex-direction: column;
-            }
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ekansh • Portfolio</title>
+  <style>
+    /* ================ THEME VARIABLES ================ */
+    :root {
+      --bg: #020308;
+      --bg-soft: #060814;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --accent: #f5d8aa;
+
+      --radius-card: 30px;
+      --radius-inner: 24px;
+      --border-soft: rgba(255,255,255,0.08);
+      --card-from: #18345a;
+      --card-to: #061226;
+      --shadow-card: 0 18px 40px rgba(0,0,0,0.85);
+
+      --btn-preview-from: #1f2937;
+      --btn-preview-to: #4b5563;
+      --btn-preview-text: #e5e7eb;
+
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    html[data-theme="light"] {
+      --bg: #f3efe7;
+      --bg-soft: #f8f4ec;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #f1c68a;
+      --border-soft: rgba(0,0,0,0.06);
+      --card-from: #f7efe4;
+      --card-to: #efe2cf;
+      --shadow-card: 0 14px 30px rgba(15,23,42,0.16);
+
+      --btn-preview-from: #e5e7eb;
+      --btn-preview-to: #cbd5f5;
+      --btn-preview-text: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at 0% 0%, #1b2a4a, var(--bg));
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.2rem 0.9rem 4rem;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ============ HERO (PHONE CARD) ============ */
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.4rem;
+    }
+
+    .card-shell {
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius-card);
+      padding: 8px;
+      background: rgba(0,0,0,0.3);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.6);
+      position: relative;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.18s ease, box-shadow 0.22s ease;
+    }
+
+    html[data-theme="light"] .card-shell {
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 16px 38px rgba(15,23,42,0.16);
+    }
+
+    /* subtle tilt only on hover devices */
+    @media (hover: hover) and (pointer: fine) {
+      .card-shell:hover {
+        transform: translateY(-4px) rotateX(4deg) rotateY(-3deg);
+        box-shadow: 0 28px 60px rgba(0,0,0,0.9);
+      }
+    }
+
+    .card-inner {
+      border-radius: var(--radius-inner);
+      padding: 1.3rem 1.5rem 1.7rem;
+      background: radial-gradient(circle at 0% 0%, #294376, var(--card-to));
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* top row: online + dev + theme toggle */
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .online-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .online-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4ade80;
+      box-shadow: 0 0 0 4px rgba(74,222,128,0.32);
+    }
+
+    .chip {
+      padding: 0.2rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    html[data-theme="light"] .chip {
+      border-color: rgba(0,0,0,0.1);
+    }
+
+    /* theme toggle pill */
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      gap: 3px;
+    }
+
+    html[data-theme="light"] .theme-toggle {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(0,0,0,0.12);
+    }
+
+    .theme-pill {
+      width: 26px;
+      height: 18px;
+      border-radius: 999px;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+    }
+
+    html[data-theme="light"] .theme-pill {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    .theme-icon {
+      font-size: 0.86rem;
+      opacity: 0.9;
+    }
+
+    /* hero header: pfp + name */
+
+    .hero-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .hero-pfp {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 0% 0%, #9ca3af, #111827);
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.28);
+      background-size: cover;
+      background-position: center;
+      /* you will replace this with your own image URL */
+      background-image: url("https://iili.io/fxlFap9.jpg");
+    }
+
+    html[data-theme="light"] .hero-pfp {
+      border-color: rgba(0,0,0,0.12);
+    }
+
+    .hero-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .section-label {
+      font-size: 0.77rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.4rem 0 0.8rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.8rem;
+    }
+
+    html[data-theme="light"] .tag {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    /* typing line */
+
+    .hero-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.3rem;
+      min-height: 2.4em; /* keep space while typing */
+    }
+
+    .hero-typed {
+      white-space: normal;
+    }
+
+    .hero-cursor {
+      display: inline-block;
+      width: 1ch;
+      animation: blink 1s steps(2, start) infinite;
+      opacity: 1;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%,100% { opacity: 0; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 1.3rem 2rem;
+      font-size: 0.84rem;
+    }
+
+    .hero-grid-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-grid-value {
+      font-weight: 600;
+    }
+
+    .hero-grid-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .hero-grid-chip {
+      padding: 0.12rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      font-size: 0.78rem;
+    }
+
+    html[data-theme="light"] .hero-grid-chip {
+      border-color: rgba(0,0,0,0.12);
+    }
+
+    .hero-bottom-bar {
+      margin-top: 1.6rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0.9;
+    }
+
+    html[data-theme="light"] .hero-bottom-bar {
+      border-top-color: rgba(0,0,0,0.12);
+    }
+
+    /* ============ GENERIC CARD SECTIONS ============ */
+
+    .card-section {
+      border-radius: var(--radius-card);
+      background: var(--bg-soft);
+      padding: 1.5rem 1.6rem 1.7rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    html[data-theme="light"] .card-section {
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .card-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-section p {
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ============ PROJECTS SECTION ============ */
+
+    .projects-list {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .project-card {
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    html[data-theme="light"] .project-card {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .project-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ============ PREVIEW SECTION ============ */
+
+    .preview-intro {
+      border: 1.5px dashed rgba(255,255,255,0.35);
+      padding: 1.4rem 1.2rem;
+      border-radius: 20px;
+      margin-bottom: 1.8rem;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    html[data-theme="light"] .preview-intro {
+      border-color: rgba(0,0,0,0.35);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+    }
+
+    @media (min-width: 768px) {
+      .preview-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+    }
+
+    .preview-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .preview-image {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .preview-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: linear-gradient(135deg,var(--btn-preview-from),var(--btn-preview-to));
+      color: var(--btn-preview-text);
+    }
+
+    /* ============ CHESS SECTION ============ */
+
+    .chess-card {
+      border-radius: var(--radius-card);
+      background: var(--bg-soft);
+      padding: 1.5rem 1.6rem 1.7rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+
+    html[data-theme="light"] .chess-card {
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .chess-table {
+      margin-top: 1.1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.7rem 0.9rem;
+      background: rgba(255,255,255,0.02);
+      font-size: 0.9rem;
+    }
+
+    html[data-theme="light"] .chess-table {
+      background: rgba(255,255,255,0.65);
+    }
+
+    .chess-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.38rem 0;
+    }
+
+    .chess-row + .chess-row {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    html[data-theme="light"] .chess-row + .chess-row {
+      border-top-color: rgba(0,0,0,0.06);
+    }
+
+    .chess-mode {
+      font-weight: 500;
+    }
+
+    .chess-elo {
+      font-weight: 700;
+    }
+
+    .chess-graph {
+      margin-top: 1.4rem;
+      padding: 0.9rem 1rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    html[data-theme="light"] .chess-graph {
+      background: rgba(255,255,255,0.65);
+      border-color: rgba(0,0,0,0.06);
+    }
+
+    .chess-graph-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .chess-graph-svg {
+      width: 100%;
+      height: 70px;
+    }
+
+    .chess-graph-svg polyline {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.9;
+    }
+
+    .chess-graph-svg circle {
+      fill: currentColor;
+      opacity: 0.95;
+    }
+
+    .chess-graph-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.3rem;
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    .chess-links {
+      margin-top: 1.1rem;
+    }
+
+    .chess-links a {
+      display: inline-flex;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.82rem;
+      text-decoration: none;
+    }
+
+    html[data-theme="light"] .chess-links a {
+      border-color: rgba(0,0,0,0.14);
+    }
+
+/* ===== LINKS WITH REAL ICONS ===== */
+
+.links-list {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.16s ease, transform 0.12s ease;
+}
+
+.link-row:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .link-row:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.link-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(255,255,255,0.2), rgba(0,0,0,0.9));
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+html[data-theme="light"] .link-icon {
+  background: radial-gradient(circle at 0% 0%, rgba(0,0,0,0.06), rgba(255,255,255,0.96));
+  border-color: rgba(0,0,0,0.12);
+}
+
+/* make the SVGs behave like app logos */
+.link-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.link-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.06rem;
+}
+
+.link-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.link-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+    /* ============ SCROLL TO TOP ============ */
+
+    .scroll-top {
+      position: fixed;
+      bottom: 18px;
+      right: 0;
+      z-index: 1500;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px 0 0 999px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.22), rgba(0,0,0,0.8));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      color: #f9fafb;
+    }
+
+    html[data-theme="light"] .scroll-top {
+      background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06), rgba(255,255,255,0.96));
+      border-color: rgba(0,0,0,0.15);
+      color: #111827;
+    }
+/* ===== CONTACT FORM ===== */
+.contact-form {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.contact-row label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.contact-row input,
+.contact-row textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+html[data-theme="light"] .contact-row input,
+html[data-theme="light"] .contact-row textarea {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,0,0,0.1);
+}
+
+.contact-row textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.contact-btn {
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--btn-preview-from), var(--btn-preview-to));
+  color: var(--btn-preview-text);
+  transition: opacity 0.18s ease;
+}
+
+.contact-btn:hover {
+  opacity: 0.92;
+}
+/* ===== COMMENTS / REVIEWS ===== */
+
+.comments-list {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.comment-card {
+  padding: 0.8rem 0.95rem;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.9rem;
+}
+
+html[data-theme="light"] .comment-card {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.comment-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.comment-time {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.comment-body {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* form */
+
+.comment-form {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.comment-row label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.comment-row input,
+.comment-row textarea {
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.03);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+html[data-theme="light"] .comment-row input,
+html[data-theme="light"] .comment-row textarea {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.1);
+}
+
+.comment-row textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.comment-btn {
+  align-self: flex-start;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg,var(--btn-preview-from),var(--btn-preview-to));
+  color: var(--btn-preview-text);
+  transition: opacity 0.18s ease, transform 0.12s ease;
+}
+
+.comment-btn:hover {
+  opacity: 0.93;
+  transform: translateY(-1px);
+}
+.comment-delete {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 0 0 0.4rem;
+  line-height: 1;
+}
+
+.comment-delete:hover {
+  color: var(--text);
+}
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>Ekansh</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#samples">Know More</a></li>
-                <li><a href="#contact">For Projects</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="hero">
-        <div class="hero-content">
-            <h2>Hello, I'm Ekansh</h2>
-            <p>From Noida, UP, aspiring to crack JEE and pursue engineering. Passionate about chess, bit of coding and developing... </p>
-            <a href="#social-media" class="btn">My Social Handles</a>
-        </div>
-    </section>
-    
-    <section id="about">
-        <div>
-            <h2>About Me</h2>
-            <p>I'm Ekansh, a dedicated Class 11 student in Noida, Uttar Pradesh, preparing for the JEE exams to build a career in engineering. Beyond academics, I love playing chess, badminton, and tennis. Expertise in HTML, CSS and Js... I'm always eager to learn new things and take on challenges!</p>
-            <blockquote>"Success is not final, failure is not fatal: It is the courage to continue that counts." ~ Lazy Ekansh</blockquote>
-        </div>
-    </section>
-    
-    <section id="samples">
-        <h2>Know More</h2>
-        <p>Here are some highlights from my academics, hobbies, and achievements. Check out my projects, game strategies, and sports moments!</p>
-        <br>
-        <div class="sample-grid">
-            <div class="sample-card">
-                <h3>My Best Chess Games </h3>
-                <p>A breakdown of my favorite chess openings and some of the best games.</p>
-                <br>
-                <a href="https://t.me/lazyekanshchess" class="btn">View Games</a>
+  <div class="page" id="top">
+
+    <!-- HERO CARD -->
+    <section class="hero">
+      <div class="card-shell">
+        <div class="card-inner">
+          <div class="card-top-row">
+            <div class="online-group">
+              <div class="online-badge">
+                <span class="online-dot"></span>
+                <span>ONLINE</span>
+              </div>
+              <span class="chip">DEV</span>
             </div>
-            <div class="sample-card">
-                <h3>Academic Project: Physics Model</h3>
-                <p>Physics project I built for school. Click on the button below to see the pptx form! </p>
-                <br>
-                <a href="" class="btn">View Now</a>
+
+            <div class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <div class="theme-pill">
+                <span class="theme-icon">⚪</span>
+              </div>
             </div>
-            <div class="sample-card">
-                <h3>Telegram and Whatsapp Accounts</h3>
-                <p>You can get international Telegram and Whatsapp accounts at cheap rate! Click below to know more</p>
-                <br>
-                <a href="https://wa.me/+639515655241" class="btn">Buy Now</a>
+          </div>
+
+          <div class="hero-header-row">
+            <div class="hero-pfp">
+              <!-- replace background-image in CSS with your own PFP URL -->
             </div>
-            <div class="sample-card">
-                
-                <h3>Paid Telegram Bots</h3>
-                <p>All type of OSINTs and unethical bots are available for sale. </p>
-                <br>
-                <a href="https://t.me/lazyekansh" ' class="btn">Buy Now</a>
+            <div class="hero-header-text">
+              <div class="section-label">Portfolio</div>
+              <h1 class="hero-title">Ekansh</h1>
             </div>
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">Developer</span>
+            <span class="tag">Designer</span>
+            <span class="tag">Student</span>
+            <span class="tag">Tennis Player</span>
+          </div>
+
+          <p class="hero-text">
+            <span id="heroTyped" class="hero-typed"></span><span class="hero-cursor">|</span>
+          </p>
+
+          <div class="hero-grid">
+            <div>
+              <div class="hero-grid-label">Current focus</div>
+              <div class="hero-grid-value">Frontend &amp; UI</div>
+            </div>
+            <div>
+              <div class="hero-grid-label">Based in</div>
+              <div class="hero-grid-value">Noida, Uttar Pradesh</div>
+            </div>
+            <div>
+              <div class="hero-grid-label">Stacks I like</div>
+              <div class="hero-grid-chips">
+                <span class="hero-grid-chip">HTML</span>
+                <span class="hero-grid-chip">CSS</span>
+                <span class="hero-grid-chip">JavaScript</span>
+              </div>
+            </div>
+            <div>
+              <div class="hero-grid-label">Currently</div>
+              <div class="hero-grid-chips">
+                <span class="hero-grid-chip">Learning React</span>
+                <span class="hero-grid-chip">Building side projects</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-bottom-bar">
+            <span>Role: Aspiring Developer &amp; Designer</span>
+            <span>Local time: <span id="localTime">--:--</span></span>
+          </div>
         </div>
+      </div>
     </section>
-    
-    <section id="social-media">
-        <h2>Social Handles</h2>
-        <div class="social-links">
-            <a href="https://instagram.com/lazyekansh" target="_blank">Instagram</a>
-            <a href="https://chess.com/member/lazyekansh" target="_blank">Chess.com</a>
-            <a href="https://github.com/lazyekansh"  target="_blank">GitHub</a>
-            <a href="https://t.me/lazyekansh" target="_blank">Telegram</a>
-            <a href="https://wa.me/+639515655241" target="_blank">WhatsApp</a>
+
+    <!-- ABOUT -->
+    <section class="card-section" id="about">
+      <div class="section-eyebrow">About</div>
+      <h2>A little about me</h2>
+      <p>
+        I’m <strong>Ekansh</strong>, a Class 11 JEE aspirant with a passion for learning and building new things. Along with academics, I’m a junior developer who enjoys exploring the world of coding, app development, and 3D modelling. I’ve even won an interschool competition in 3D modelling, which motivates me to keep creating. <br>
+        Outside the tech world, I’m a big sports enthusiast, I love playing tennis, chess, badminton, and basically anything that challenges me to improve. I believe in staying curious, competitive, and constantly growing in every field I pursue.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="card-section" id="projects">
+      <div class="section-eyebrow">Projects</div>
+      <h2>Stuff I've built for fun</h2>
+      <p>Some tiny projects and experiments that helped me learn.</p>
+
+      <div class="projects-list">
+        <article class="project-card">
+          <h3>Minimal Card Website</h3>
+          <p>A single-page website with a glassy card in the middle, theme switcher, and mobile-first layout.</p>
+          <div class="project-meta">Frontend · HTML · CSS · Responsive layout</div>
+        </article>
+
+        <article class="project-card">
+          <h3>Quiz / Study Helper</h3>
+          <p>A small quiz-style page to practice questions, track score and get quick feedback.</p>
+          <div class="project-meta">Web app · HTML · CSS · JavaScript</div>
+        </article>
+
+        <article class="project-card">
+          <h3>E-Commerce Website</h3>
+          <p>A small e-commerce page for 'Kanha Bakeries', with exploring, wishlisting and simple cart flow.</p>
+          <div class="project-meta">Web app · HTML · CSS · JavaScript</div>
+        </article>
+
+        <article class="project-card">
+          <h3>Link Hub</h3>
+          <p>A lightweight “one page” where all important study or social links live in one clean place.</p>
+          <div class="project-meta">Utility · Responsive · Simple UI</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="card-section" id="preview">
+      <div class="preview-intro">
+        <div class="section-eyebrow">Preview</div>
+        <h2>Preview my built pages</h2>
+        <p>A few quick screenshots of projects I’ve built. Tap any card to open the live page in a new tab.</p>
+      </div>
+
+      <div class="preview-grid">
+
+        <article class="preview-card">
+          <div class="preview-image">
+            <img src="https://iili.io/fxuzrIs.jpg" alt="Project 1 preview">
+          </div>
+          <a href="https://www.crustveganbakery.com" target="_blank" class="preview-btn">Open page ↗</a>
+        </article>
+
+        <article class="preview-card">
+          <div class="preview-image">
+            <img src="https://iili.io/fxukvpI.jpg" alt="Project 2 preview">
+          </div>
+          <a href="https://agecheckerbyekansh.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
+        </article>
+
+        <article class="preview-card">
+          <div class="preview-image">
+            <img src="https://iili.io/fxAIRJS.jpg" alt="Project 3 preview">
+          </div>
+          <a href="https://instabiobyekansh.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
+        </article>
+
+        <article class="preview-card">
+          <div class="preview-image">
+            <img src="https://iili.io/fx5gnQp.jpg" alt="Project 4 preview">
+          </div>
+          <a href="https://flappymodiji.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CHESS -->
+    <section class="chess-card" id="chess">
+      <div class="section-eyebrow">More bout chess</div>
+      <h2>My Chess Ratings</h2>
+      <p>Last updated: Nov 2025</p>
+
+      <div class="chess-table">
+        <div class="chess-row">
+          <span class="chess-mode">Rapid · Chess.com</span>
+          <span class="chess-elo">1478</span>
         </div>
+        <div class="chess-row">
+          <span class="chess-mode">Blitz · Chess.com</span>
+          <span class="chess-elo">1220</span>
+        </div>
+        <div class="chess-row">
+          <span class="chess-mode">Bullet · Chess.com</span>
+          <span class="chess-elo">0</span>
+        </div>
+        <div class="chess-row">
+          <span class="chess-mode">Puzzles · Chess.com</span>
+          <span class="chess-elo">1639</span>
+        </div>
+      </div>
+
+      <div class="chess-graph">
+        <div class="chess-graph-header">
+          <span>Rapid · Chess.com</span>
+          <span class="chess-graph-latest">1478</span>
+        </div>
+        <svg viewBox="0 0 280 110" class="chess-graph-svg" aria-hidden="true">
+          <!-- rough mapping of your rating history to a simple line -->
+          <polyline
+            points="
+              10,100
+              47,70
+              84,60
+              121,46
+              158,38
+              195,30
+              232,24
+              269,36
+            "
+          />
+          <circle cx="269" cy="36" r="3" />
+        </svg>
+        <div class="chess-graph-labels">
+          <span>2021</span>
+          <span>2022</span>
+          <span>2023</span>
+          <span>Jun ’24</span>
+          <span>Sep ’24</span>
+          <span>Dec ’24</span>
+          <span>Mar ’25</span>
+          <span>Nov ’25</span>
+        </div>
+      </div>
+
+      <div class="chess-links">
+        <a href="https://www.chess.com/member/lazyekansh" target="_blank">View Chess.com profile ↗</a>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="card-section" id="links">
+  <div class="section-eyebrow">Links</div>
+  <h2>Where to find me</h2>
+  <p>Same person, different platforms.</p>
+
+  <div class="links-list">
+
+    <!-- GitHub -->
+    <a class="link-row" href="https://github.com/lazyekansh" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- GitHub icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.6 2 12.26c0 4.5 2.87 8.32 6.85 9.67.5.1.68-.23.68-.5
+          0-.24-.01-.87-.01-1.7-2.49.55-3.02-1.22-3.02-1.22-.45-1.18-1.1-1.5-1.1-1.5-.9-.64.07-.63.07-.63
+          1 .07 1.53 1.07 1.53 1.07.89 1.57 2.34 1.12 2.9.86.09-.66.35-1.12.63-1.38-1.99-.23-4.08-1.03-4.08-4.6
+          0-1.02.35-1.86.93-2.51-.09-.23-.4-1.17.09-2.44 0 0 .76-.25 2.5.96a8.25 8.25 0 0 1 4.56 0c1.73-1.21 2.49-.96 2.49-.96.49 1.27.18 2.21.09 2.44.58.65.93 1.49.93 2.51
+          0 3.59-2.1 4.36-4.1 4.59.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.61.69.5A10.01 10.01 0 0 0 22 12.26C22 6.6 17.52 2 12 2Z"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">GitHub</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+    <!-- Instagram -->
+    <a class="link-row" href="https://instagram.com/lazyekansh" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Instagram icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.3" cy="6.7" r="1.2"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">Instagram</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+    <!-- Chess.com -->
+    <a class="link-row" href="https://www.chess.com/member/lazyekansh" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Chess rook icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 3h3v3h2V3h3v3h2v5l-1.5 1.5V16H8.5v-3.5L7 11V6h2V3Zm1.5 15h7l1 3H7.5l1-3Z"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">Chess.com</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+    <!-- Email -->
+    <a class="link-row" href="mailto:lazyekansh@gmail.com">
+      <div class="link-icon">
+        <!-- Envelope icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+          <path d="M5 7.5 12 12l7-4.5"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">Email</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+    <!-- Telegram -->
+    <a class="link-row" href="https://t.me/lazyekansh" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Telegram paper plane -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 11.5 19.3 4.7c.7-.32 1.4.35 1.16 1.05l-3.1 9.27c-.2.6-.91.86-1.47.53l-3.45-2.08-1.74 2.96
+          c-.14.25-.39.4-.67.42-.28.01-.55-.12-.72-.35L7.6 13l-3.1-1.3c-.89-.37-.88-1.63.03-2.2Z"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">Telegram</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="link-row" href="https://wa.me/639515655241" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- WhatsApp bubble -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 3.1c-4.9 0-8.9 3.9-8.9 8.7 0 1.53.41 3.01 1.2 4.33L3 21l4-1.28a9.1 9.1 0 0 0 5.04 1.5h.01
+          c4.9 0 8.9-3.9 8.9-8.7 0-2.33-.93-4.52-2.62-6.16A8.9 8.9 0 0 0 12.04 3.1Zm0 2a6.73 6.73 0 0 1 4.8 1.94A6.6 6.6 0 0 1 19 12.5
+          c0 3.69-3.03 6.7-6.76 6.7-1.18 0-2.33-.3-3.35-.86l-.24-.13-2.37.76.78-2.27-.15-.24a6.55 6.55 0 0 1-1.02-3.46
+          6.64 6.64 0 0 1 6.15-6.9h0Zm-2.1 2.83c-.2-.43-.41-.44-.6-.45-.16-.01-.34-.01-.52-.01-.18 0-.47.07-.71.34-.24.26-.93.9-.93 2.2
+          0 1.29.95 2.54 1.09 2.72.13.18 1.83 2.9 4.5 3.95 2.23.88 2.68.73 3.17.69.48-.04 1.56-.63 1.78-1.25.22-.61.22-1.13.16-1.25
+          -.07-.12-.25-.2-.52-.35-.27-.16-1.56-.86-1.8-.96-.24-.09-.41-.14-.6.14-.18.26-.69.83-.85 1-.16.18-.31.2-.58.05
+          -1.57-.77-2.6-2.72-2.68-2.92-.08-.2-.01-.3.12-.44.13-.14.29-.34.44-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.01-.53
+          -.05-.16-.46-1.14-.66-1.57Z"/>
+        </svg>
+      </div>
+      <div class="link-meta">
+        <div class="link-label">WhatsApp</div>
+        <div class="link-name"></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+    <!-- COMMENTS / REVIEWS -->
+    <section class="card-section" id="comments">
+      <div class="section-eyebrow">Comments</div>
+      <h2>Comments &amp; reviews</h2>
+      <p>Drop a short comment or review about this website or my projects.</p>
+
+      <div id="commentsList" class="comments-list">
+        <!-- comments will be injected here by JS -->
+      </div>
+
+      <form id="commentForm" class="comment-form">
+        <div class="comment-row">
+          <label for="cmName">Your name</label>
+          <input type="text" id="cmName" placeholder="Your name" required>
+        </div>
+
+        <div class="comment-row">
+          <label for="cmText">Comment</label>
+          <textarea id="cmText" placeholder="Write something nice (or helpful)…" required></textarea>
+        </div>
+
+        <button type="submit" class="comment-btn">Post comment</button>
+      </form>
     </section>
     
-    <section id="contact">
-        <h2>For Paid Projects</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message and requirements" required></textarea>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </section>
-    
-    <footer>
-        <p>&copy; 2009 Ekansh. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
-            });
+<!-- CONTACT -->
+<section class="card-section" id="contact">
+  <div class="section-eyebrow">Contact</div>
+  <h2>Contact Me</h2>
+  <p>If you want to reach out, drop your name, email and message. I’d love to hear from you.</p>
+
+  <form id="contactForm" class="contact-form">
+    <div class="contact-row">
+      <label>Full name</label>
+      <input type="text" id="cName" placeholder="Your name" required>
+    </div>
+
+    <div class="contact-row">
+      <label>Email address</label>
+      <input type="email" id="cEmail" placeholder="you@example.com" required>
+    </div>
+
+    <div class="contact-row">
+      <label>Message</label>
+      <textarea id="cMsg" placeholder="Write your message…" required></textarea>
+    </div>
+
+    <button type="submit" class="contact-btn">Send message ✦</button>
+  </form>
+</section>
+  </div>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+    aria-label="Back to top">↑</button>
+
+  <script>
+    // Theme toggle
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+      const icon = btn.querySelector(".theme-icon");
+
+      function applyTheme(theme) {
+        root.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+        if (theme === "dark") {
+          icon.textContent = "⚪"; // show sun -> click to go light
+        } else {
+          icon.textContent = "⚫"; // show moon -> click to go dark
+        }
+      }
+
+      let saved = localStorage.getItem("theme");
+      if (!saved) {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        saved = prefersDark ? "dark" : "light";
+      }
+      applyTheme(saved);
+
+      btn.addEventListener("click", function () {
+        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+      });
+    })();
+
+    // Local time (simple)
+    (function () {
+      const el = document.getElementById("localTime");
+      function update() {
+        const d = new Date();
+        const h = d.getHours().toString().padStart(2,"0");
+        const m = d.getMinutes().toString().padStart(2,"0");
+        el.textContent = h + ":" + m;
+      }
+      update();
+      setInterval(update, 60000);
+    })();
+
+    // Typing animation
+    (function () {
+      const target = document.getElementById("heroTyped");
+      const text = "I enjoy turning ideas into clean & minimal experiences on the internet.";
+      let index = 0;
+
+      function type() {
+        if (!target) return;
+        if (index <= text.length) {
+          target.textContent = text.slice(0, index);
+          index++;
+          setTimeout(type, 40);
+        }
+      }
+
+      type();
+    })();
+    // Comments / reviews (localStorage per browser)
+    (function () {
+      const listEl = document.getElementById("commentsList");
+      const form = document.getElementById("commentForm");
+      if (!listEl || !form) return;
+
+      const NAME_ID = "cmName";
+      const TEXT_ID = "cmText";
+      const STORAGE_KEY = "ekansh_site_comments_v1";
+
+      function safeText(str) {
+        return str.replace(/[<>&]/g, function (c) {
+          return ({
+            "<": "&lt;",
+            ">": "&gt;",
+            "&": "&amp;"
+          })[c] || c;
         });
-        
-        // Simple form submission (replace with actual backend if needed)
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Message sent! (Contact on Telegram or GitHub for faster response!)');
+      }
+
+      function loadComments() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveComments(comments) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+        } catch (e) {
+          // ignore quota errors
+        }
+      }
+
+      function formatTime(date) {
+        const d = new Date(date);
+        if (isNaN(d.getTime())) return "";
+        const day = d.getDate().toString().padStart(2, "0");
+        const month = (d.getMonth() + 1).toString().padStart(2, "0");
+        const year = d.getFullYear().toString().slice(-2);
+        const hrs = d.getHours().toString().padStart(2, "0");
+        const mins = d.getMinutes().toString().padStart(2, "0");
+        return `${day}/${month}/${year} · ${hrs}:${mins}`;
+      }
+
+      function renderComments(commentsArr) {
+        listEl.innerHTML = "";
+        if (!commentsArr.length) {
+          const empty = document.createElement("div");
+          empty.style.fontSize = "0.85rem";
+          empty.style.opacity = "0.8";
+          empty.textContent = "No comments yet. Be the first one to write something!";
+          listEl.appendChild(empty);
+          return;
+        }
+
+        commentsArr.forEach(function (c, idx) {
+          const card = document.createElement("article");
+          card.className = "comment-card";
+
+          const header = document.createElement("div");
+          header.className = "comment-header";
+
+          const left = document.createElement("div");
+
+          const name = document.createElement("span");
+          name.className = "comment-name";
+          name.innerHTML = safeText(c.name || "Anonymous");
+
+          const time = document.createElement("span");
+          time.className = "comment-time";
+          time.textContent = formatTime(c.createdAt);
+
+          left.appendChild(name);
+          left.appendChild(document.createTextNode(" "));
+          // small separator dot
+          const dot = document.createElement("span");
+          dot.textContent = "• ";
+          dot.style.fontSize = "0.8rem";
+          dot.style.opacity = "0.7";
+          left.appendChild(dot);
+          left.appendChild(time);
+
+          const del = document.createElement("button");
+          del.type = "button";
+          del.className = "comment-delete";
+          del.textContent = "×";
+          del.title = "Delete this comment (only on this device)";
+          del.addEventListener("click", function () {
+            commentsArr.splice(idx, 1);
+            saveComments(commentsArr);
+            renderComments(commentsArr);
+          });
+
+          header.appendChild(left);
+          header.appendChild(del);
+
+          const body = document.createElement("p");
+          body.className = "comment-body";
+          body.innerHTML = safeText(c.text);
+
+          card.appendChild(header);
+          card.appendChild(body);
+          listEl.appendChild(card);
         });
-    </script>
+      }
+      let comments = loadComments();
+      renderComments(comments);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById(NAME_ID).value.trim() || "Anonymous";
+        const text = document.getElementById(TEXT_ID).value.trim();
+        if (!text) return;
+
+        const newComment = {
+          name: name,
+          text: text,
+          createdAt: new Date().toISOString()
+        };
+
+        comments.unshift(newComment); // newest on top
+        saveComments(comments);
+        renderComments(comments);
+
+        form.reset();
+      });
+    })();
+  </script>
 </body>
 </html>
