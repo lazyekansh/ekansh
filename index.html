@@ -1,262 +1,42 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ekansh's Portfolio</title>
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: #000; /* Solid black background for a sleek, attractive look */
-            min-height: 100vh;
-            animation: subtlePulse 10s infinite alternate; /* Subtle animation for depth */
-        }
-        @keyframes subtlePulse {
-            0% { background: #000; }
-            100% { background: #111; } /* Slight darkening for effect */
-        }
-        header {
-            position: relative;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for contrast */
-            padding: 1rem;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(255,255,255,0.2);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-        nav ul li {
-            margin-left: 2rem;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s, transform 0.3s;
-        }
-        nav a:hover {
-            color: #f5f5dc; /* Light cream accent */
-            transform: scale(1.1);
-        }
-        /* Hero section */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            animation: fadeIn 2s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .btn {
-            background: #fff; /* White button */
-            color: #000;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(255,255,255,0.3);
-        }
-        .btn:hover {
-            background: #f5f5dc; /* Light cream on hover */
-            color: #000;
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(255,255,255,0.5);
-        }
-        /* Sections */
-        section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            animation: slideUp 1s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            color: #f5f5dc; /* Light cream for headings */
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
-        }
-        #about {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .profile-img {
-            width: 200px;
-            border-radius: 60%;
-            box-shadow: 0 0 20px rgba(255,255,255,0.3);
-            transition: transform 0.3s;
-        }
-        .profile-img:hover {
-            transform: rotate(5deg) scale(1.05);
-        }
-        blockquote {
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #f5f5dc; /* Light cream for quote */
-            border-left: 5px solid #fff; /* White border */
-            padding-left: 1rem;
-            margin: 2rem 0;
-            animation: quoteGlow 3s infinite alternate;
-        }
-        @keyframes quoteGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
-        }
-        #samples .sample-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .sample-card {
-            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-            padding: 1rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(255,255,255,0.2);
-        }
-        .sample-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 16px rgba(255,255,255,0.4);
-        }
-        .sample-card img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        .sample-card:hover img {
-            transform: scale(1.05);
-        }
-        #social-media {
-            text-align: center;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .social-links a {
-            color: #f5f5dc; /* Light cream */
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .social-links a:hover {
-            color: #000;
-            background: #fff; /* White on hover */
-            transform: scale(1.1);
-        }
-        #contact form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
-        #contact input, #contact textarea {
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #000;
-            transition: background 0.3s;
-        }
-        #contact input:focus, #contact textarea:focus {
-            background: rgba(255, 255, 255, 0.4);
-            outline: none;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: #f5f5dc;
-        }
-<!doctype html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Ekansh • Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ================ THEME VARIABLES ================ */
     :root {
-      --bg: #020308;
-      --bg-soft: #060814;
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --accent: #f5d8aa;
-
-      --radius-card: 30px;
-      --radius-inner: 24px;
-      --border-soft: rgba(255,255,255,0.08);
-      --card-from: #18345a;
-      --card-to: #061226;
-      --shadow-card: 0 18px 40px rgba(0,0,0,0.85);
-
-      --btn-preview-from: #1f2937;
-      --btn-preview-to: #4b5563;
-      --btn-preview-text: #e5e7eb;
-
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      --bg: #050815;
+      --bg-soft: #111827;
+      --card-bg: rgba(248, 241, 232, 0.97);
+      --card-bg-soft: rgba(248, 241, 232, 0.9);
+      --glass-bg: linear-gradient(135deg, rgba(255,255,255,0.24), rgba(255,255,255,0.04));
+      --text-main: #111111;
+      --text-muted: #6b7280;
+      --accent: #4f7cff;
+      --accent-soft: rgba(79, 124, 255, 0.15);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --chip-bg: rgba(15, 23, 42, 0.06);
     }
 
-    html[data-theme="light"] {
-      --bg: #f3efe7;
-      --bg-soft: #f8f4ec;
-      --text: #111827;
-      --muted: #6b7280;
-      --accent: #f1c68a;
-      --border-soft: rgba(0,0,0,0.06);
-      --card-from: #f7efe4;
-      --card-to: #efe2cf;
-      --shadow-card: 0 14px 30px rgba(15,23,42,0.16);
-
-      --btn-preview-from: #e5e7eb;
-      --btn-preview-to: #cbd5f5;
-      --btn-preview-text: #111827;
+    body.light {
+      --bg: #f3efe8;
+      --bg-soft: #e1d6c5;
+      --card-bg: rgba(12, 20, 40, 0.96);
+      --card-bg-soft: rgba(12, 20, 40, 0.9);
+      --glass-bg: linear-gradient(135deg, rgba(24,33,64,0.9), rgba(15,23,42,0.98));
+      --text-main: #f9f5ef;
+      --text-muted: #a5b0c5;
+      --accent: #ffb85c;
+      --accent-soft: rgba(255, 184, 92, 0.18);
+      --border-subtle: rgba(0,0,0,0.4);
+      --chip-bg: rgba(243,244,246,0.12);
     }
 
     * {
@@ -265,1276 +45,1441 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
-      font-family: var(--font-main);
-      background: radial-gradient(circle at 0% 0%, #1b2a4a, var(--bg));
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #202b4e, #050815 45%, #020308 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
     }
 
     .page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1.2rem 0.9rem 4rem;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    /* ============ HERO (PHONE CARD) ============ */
-
-    .hero {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2.4rem;
-    }
-
-    .card-shell {
       width: 100%;
-      max-width: 420px;
-      border-radius: var(--radius-card);
-      padding: 8px;
-      background: rgba(0,0,0,0.3);
-      box-shadow: 0 22px 45px rgba(0,0,0,0.6);
-      position: relative;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 0.18s ease, box-shadow 0.22s ease;
-    }
-
-    html[data-theme="light"] .card-shell {
-      background: rgba(255,255,255,0.55);
-      box-shadow: 0 16px 38px rgba(15,23,42,0.16);
-    }
-
-    /* subtle tilt only on hover devices */
-    @media (hover: hover) and (pointer: fine) {
-      .card-shell:hover {
-        transform: translateY(-4px) rotateX(4deg) rotateY(-3deg);
-        box-shadow: 0 28px 60px rgba(0,0,0,0.9);
-      }
-    }
-
-    .card-inner {
-      border-radius: var(--radius-inner);
-      padding: 1.3rem 1.5rem 1.7rem;
-      background: radial-gradient(circle at 0% 0%, #294376, var(--card-to));
-      box-shadow: var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* top row: online + dev + theme toggle */
-    .card-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .online-group {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .online-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .online-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #4ade80;
-      box-shadow: 0 0 0 4px rgba(74,222,128,0.32);
-    }
-
-    .chip {
-      padding: 0.2rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.22);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    html[data-theme="light"] .chip {
-      border-color: rgba(0,0,0,0.1);
-    }
-
-    /* theme toggle pill */
-
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.7);
-      border: 1px solid rgba(255,255,255,0.35);
-      cursor: pointer;
-      gap: 3px;
-    }
-
-    html[data-theme="light"] .theme-toggle {
-      background: rgba(255,255,255,0.9);
-      border-color: rgba(0,0,0,0.12);
-    }
-
-    .theme-pill {
-      width: 26px;
-      height: 18px;
-      border-radius: 999px;
-      background: #f9fafb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-    }
-
-    html[data-theme="light"] .theme-pill {
-      background: #111827;
-      color: #f9fafb;
-    }
-
-    .theme-icon {
-      font-size: 0.86rem;
-      opacity: 0.9;
-    }
-
-    /* hero header: pfp + name */
-
-    .hero-header-row {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 0.9rem;
-      margin-top: 0.3rem;
-    }
-
-    .hero-pfp {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      background: radial-gradient(circle at 0% 0%, #9ca3af, #111827);
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.28);
-      background-size: cover;
-      background-position: center;
-      /* you will replace this with your own image URL */
-      background-image: url("https://iili.io/fxlFap9.jpg");
-    }
-
-    html[data-theme="light"] .hero-pfp {
-      border-color: rgba(0,0,0,0.12);
-    }
-
-    .hero-header-text {
+      max-width: 1120px;
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .section-label {
-      font-size: 0.77rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .hero-title {
-      font-size: 2.3rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.4rem 0 0.8rem;
-    }
-
-    .tag {
-      padding: 0.25rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 0.8rem;
-    }
-
-    html[data-theme="light"] .tag {
-      background: rgba(255,255,255,0.85);
-      border-color: rgba(0,0,0,0.08);
-    }
-
-    /* typing line */
-
-    .hero-text {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 1.3rem;
-      min-height: 2.4em; /* keep space while typing */
-    }
-
-    .hero-typed {
-      white-space: normal;
-    }
-
-    .hero-cursor {
-      display: inline-block;
-      width: 1ch;
-      animation: blink 1s steps(2, start) infinite;
-      opacity: 1;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50.01%,100% { opacity: 0; }
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(2,minmax(0,1fr));
-      gap: 1.3rem 2rem;
-      font-size: 0.84rem;
-    }
-
-    .hero-grid-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .hero-grid-value {
-      font-weight: 600;
-    }
-
-    .hero-grid-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.2rem;
-    }
-
-    .hero-grid-chip {
-      padding: 0.12rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 0.78rem;
-    }
-
-    html[data-theme="light"] .hero-grid-chip {
-      border-color: rgba(0,0,0,0.12);
-    }
-
-    .hero-bottom-bar {
-      margin-top: 1.6rem;
-      padding-top: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.18);
-      font-size: 0.78rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
-      opacity: 0.9;
-    }
-
-    html[data-theme="light"] .hero-bottom-bar {
-      border-top-color: rgba(0,0,0,0.12);
-    }
-
-    /* ============ GENERIC CARD SECTIONS ============ */
-
-    .card-section {
-      border-radius: var(--radius-card);
-      background: var(--bg-soft);
-      padding: 1.5rem 1.6rem 1.7rem;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    html[data-theme="light"] .card-section {
-      border-color: rgba(0,0,0,0.08);
-    }
-
-    .card-section h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .card-section p {
-      font-size: 0.92rem;
-      line-height: 1.55;
-    }
-
-    .section-eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    /* ============ PROJECTS SECTION ============ */
-
-    .projects-list {
-      margin-top: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-    }
-
-    .project-card {
-      border-radius: 18px;
-      padding: 1rem 1.1rem;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    html[data-theme="light"] .project-card {
-      background: rgba(255,255,255,0.9);
-      border-color: rgba(0,0,0,0.08);
-    }
-
-    .project-meta {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    /* ============ PREVIEW SECTION ============ */
-
-    .preview-intro {
-      border: 1.5px dashed rgba(255,255,255,0.35);
-      padding: 1.4rem 1.2rem;
-      border-radius: 20px;
-      margin-bottom: 1.8rem;
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(8px);
-    }
-
-    html[data-theme="light"] .preview-intro {
-      border-color: rgba(0,0,0,0.35);
-      background: rgba(255,255,255,0.55);
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1fr;
       gap: 1.6rem;
     }
 
-    @media (min-width: 768px) {
-      .preview-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-    }
+    /* ---------- HEADER NAV ---------- */
 
-    .preview-card {
+    .main-header {
+      width: 100%;
+      padding: .8rem 1.1rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .preview-image {
-      width: 100%;
+      justify-content: space-between;
+      align-items: center;
       border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(18px);
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+      color: #e5edff;
     }
 
-    .preview-image img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      aspect-ratio: 16 / 9;
+    .main-header .logo {
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      font-size: .86rem;
     }
 
-    .preview-btn {
+    .main-header nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      font-size: .82rem;
+    }
+
+    .main-header nav a {
+      text-decoration: none;
+      color: #dbe5ff;
+      opacity: .85;
+      padding: .28rem .7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.65);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .main-header nav a:hover {
+      opacity: 1;
+      background: rgba(79, 124, 255, 0.2);
+      border-color: var(--accent);
+    }
+
+    /* ---------- HERO CARD ---------- */
+
+    .hero-card {
+      border-radius: 28px;
+      padding: 1.7rem 1.6rem 1.4rem;
+      background: var(--glass-bg);
+      color: #f9fafb;
+      box-shadow:
+        0 32px 80px rgba(0,0,0,0.7),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+      backdrop-filter: blur(24px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-status {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 0.6rem 1rem;
+      gap: .4rem;
+      padding: .35rem .8rem;
       border-radius: 999px;
-      border: none;
-      text-decoration: none;
-      font-size: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: .76rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+   .status-dot {
+  width: 10px;
+  height: 10px;
+  background: #b3b3b3; /* neutral grey */
+  border-radius: 50%;
+  display: inline-block;
+}
+
+    .hero-tag-pill {
+      padding: .32rem .85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.6);
+      font-size: .75rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .theme-toggle {
+      width: 38px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.9);
+      background: #020617;
+      padding: 0 2px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .theme-toggle-knob {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #f9fafb;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8);
+      transition: transform .2s ease;
+      transform: translateX(14px); /* default dark */
+    }
+
+    body.light .theme-toggle-knob {
+      transform: translateX(0);
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #d4d4d8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.65);
+      flex-shrink: 0;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+   .hero-title-block h1 {
+    font-size: 1.93rem;   /* new balanced size */
+    letter-spacing: .04em;
+}
+    .hero-subtitle-label {
+      margin-top: .2rem;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .hero-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .7rem;
+    }
+
+    .hero-pill {
+      padding: .25rem .8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.9);
+      font-size: .76rem;
+      color: #020617;
+      background: rgba(241,245,249,0.9);
+    }
+
+    body.light .hero-pill {
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.7);
+    }
+
+    .hero-desc {
+      margin-top: .8rem;
+      font-size: .9rem;
+      line-height: 1.6;
+      max-width: 420px;
+      opacity: .92;
+    }
+
+    .hero-right {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .9rem;
+      font-size: .8rem;
+    }
+
+    .mini-card {
+      border-radius: 16px;
+      padding: .8rem .9rem;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .mini-label {
+      font-size: .66rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: .18rem;
+    }
+
+    .mini-value {
+      font-size: .86rem;
       font-weight: 500;
-      background: linear-gradient(135deg,var(--btn-preview-from),var(--btn-preview-to));
-      color: var(--btn-preview-text);
     }
 
-    /* ============ CHESS SECTION ============ */
-
-    .chess-card {
-      border-radius: var(--radius-card);
-      background: var(--bg-soft);
-      padding: 1.5rem 1.6rem 1.7rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 2rem;
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: .78rem;
+      opacity: .8;
+      flex-wrap: wrap;
     }
 
-    html[data-theme="light"] .chess-card {
-      border-color: rgba(0,0,0,0.08);
+    .hero-footer strong {
+      font-weight: 600;
     }
 
-    .chess-table {
-      margin-top: 1.1rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.7rem 0.9rem;
-      background: rgba(255,255,255,0.02);
-      font-size: 0.9rem;
+    /* ---------- GENERIC CARD ---------- */
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 26px;
+      padding: 1.5rem 1.4rem 1.7rem;
+      box-shadow:
+        0 22px 52px rgba(0,0,0,0.55),
+        inset 0 0 0 1px var(--border-subtle);
+      border: 1px solid var(--border-subtle);
     }
 
-    html[data-theme="light"] .chess-table {
-      background: rgba(255,255,255,0.65);
+    .card-header {
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .7rem;
+      color: var(--text-muted);
+      margin-bottom: .35rem;
+    }
+
+    .card-title {
+      font-size: 1.18rem;
+      margin-bottom: .3rem;
+    }
+
+    .card-subtitle {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .body-text {
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about-body p + p {
+      margin-top: .7rem;
+    }
+
+    /* ---------- PROJECTS ---------- */
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+    }
+
+    .project-item {
+      padding: .85rem 1rem;
+      border-radius: 18px;
+      background: var(--card-bg-soft);
+      border: 1px dashed rgba(15,23,42,0.16);
+    }
+
+    .project-title {
+      font-size: .98rem;
+      font-weight: 600;
+      margin-bottom: .16rem;
+    }
+
+    .project-desc {
+      font-size: .85rem;
+      color: var(--text-muted);
+      margin-bottom: .35rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--text-muted);
+    }
+
+    .pill-soft {
+      padding: .18rem .55rem;
+      border-radius: 999px;
+      background: var(--chip-bg);
+    }
+
+    /* ---------- LINKS GRID ---------- */
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      padding: .9rem 1rem;
+      border-radius: 18px;
+      background: var(--card-bg-soft);
+      box-shadow: inset 0 0 0 1px rgba(15,23,42,0.06);
+      text-decoration: none;
+      color: var(--text-main);
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .link-item:hover {
+      transform: translateY(-2px);
+      background: var(--accent-soft);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.25);
+    }
+
+    .link-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: var(--chip-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .link-labels {
+      display: flex;
+      flex-direction: column;
+      gap: .08rem;
+    }
+
+    .link-name {
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .link-url {
+      font-size: .76rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- CHESS GRAPH ---------- */
+
+    .chess-graph-wrapper {
+      margin-top: .4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
     }
 
     .chess-row {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr) 52px;
+      align-items: center;
+      gap: .55rem;
+      font-size: .8rem;
+    }
+
+    .chess-label {
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .7rem;
+      color: var(--text-muted);
+    }
+
+    .chess-track {
+      height: 9px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      overflow: hidden;
+    }
+
+    .chess-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), #22c55e);
+      width: var(--w, 50%);
+    }
+
+    .chess-score {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-size: .8rem;
+    }
+
+    /* line graph below ratings */
+    .chess-line-graph {
+      margin-top: 1.1rem;
+      padding-top: .9rem;
+      border-top: 1px dashed rgba(15,23,42,0.16);
+    }
+
+    .chess-line-label {
+      font-size: .78rem;
+      color: var(--text-muted);
+      margin-bottom: .5rem;
+    }
+
+    .chess-line-graph svg {
+      width: 100%;
+      max-width: 520px;
+      display: block;
+    }
+
+    /* ---------- COMMENTS FORM ---------- */
+
+    .comments-empty {
+      font-size: .86rem;
+      color: var(--text-muted);
+      margin-bottom: .7rem;
+    }
+
+    .comments-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: 1rem;
+    }
+
+    .comment-card {
+      padding: .7rem .8rem;
+      border-radius: 14px;
+      background: var(--card-bg-soft);
+      border: 1px dashed rgba(15,23,42,0.12);
+      font-size: .84rem;
+    }
+
+    .comment-header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding: 0.38rem 0;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .25rem;
     }
 
-    .chess-row + .chess-row {
-      border-top: 1px solid rgba(255,255,255,0.06);
+    .comment-name {
+      font-weight: 600;
     }
 
-    html[data-theme="light"] .chess-row + .chess-row {
-      border-top-color: rgba(0,0,0,0.06);
+    .comment-meta {
+      font-size: .72rem;
+      color: var(--text-muted);
     }
 
-    .chess-mode {
+    .comment-body {
+      font-size: .84rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .8rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .22rem;
+      font-size: .8rem;
+    }
+
+    .field label {
       font-weight: 500;
     }
 
-    .chess-elo {
-      font-weight: 700;
+    .field input,
+    .field textarea {
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,0.14);
+      padding: .58rem .75rem;
+      font-size: .86rem;
+      font-family: inherit;
+      outline: none;
+      background: rgba(255,255,255,0.96);
     }
 
-    .chess-graph {
-      margin-top: 1.4rem;
-      padding: 0.9rem 1rem 1rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
     }
 
-    html[data-theme="light"] .chess-graph {
-      background: rgba(255,255,255,0.65);
-      border-color: rgba(0,0,0,0.06);
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
     }
 
-    .chess-graph-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .chess-graph-svg {
-      width: 100%;
-      height: 70px;
-    }
-
-    .chess-graph-svg polyline {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2.3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.9;
-    }
-
-    .chess-graph-svg circle {
-      fill: currentColor;
-      opacity: 0.95;
-    }
-
-    .chess-graph-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 0.3rem;
-      font-size: 0.7rem;
-      opacity: 0.7;
-    }
-
-    .chess-links {
-      margin-top: 1.1rem;
-    }
-
-    .chess-links a {
-      display: inline-flex;
-      padding: 0.4rem 0.9rem;
+    .btn-primary {
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 0.82rem;
-      text-decoration: none;
+      border: none;
+      padding: .55rem 1.3rem;
+      font-size: .86rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: var(--accent);
+      color: #f9fafb;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+      width: fit-content;
     }
 
-    html[data-theme="light"] .chess-links a {
-      border-color: rgba(0,0,0,0.14);
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.5);
     }
 
-/* ===== LINKS WITH REAL ICONS ===== */
+    .form-note {
+      font-size: .74rem;
+      color: var(--text-muted);
+    }
 
-.links-list {
-  margin-top: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
+    /* ---------- CONTACT ---------- */
 
-.link-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.55rem 0.8rem;
-  border-radius: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.16s ease, transform 0.12s ease;
-}
+    .contact-note {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: .4rem;
+      margin-bottom: .8rem;
+    }
 
-.link-row:hover {
-  background: rgba(255,255,255,0.05);
-  transform: translateY(-1px);
-}
+    /* ---------- FOOTER & SCROLL TOP ---------- */
 
-html[data-theme="light"] .link-row:hover {
-  background: rgba(0,0,0,0.04);
-}
+    .site-footer {
+      font-size: .8rem;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: .3rem;
+    }
 
-.link-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
+.scroll-top {
+  position: fixed;
+  right: 0;
+  bottom: 1.2rem;
+  width: 55px;
+  height: 42px;
+  border-radius: 20px 0 0 20px;  /* pill attached to side */
+  border: none;
+  background: var(--accent);
+  color: #fff !important;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  background: radial-gradient(circle at 0% 0%, rgba(255,255,255,0.2), rgba(0,0,0,0.9));
-  border: 1px solid rgba(255,255,255,0.16);
-}
-
-html[data-theme="light"] .link-icon {
-  background: radial-gradient(circle at 0% 0%, rgba(0,0,0,0.06), rgba(255,255,255,0.96));
-  border-color: rgba(0,0,0,0.12);
-}
-
-/* make the SVGs behave like app logos */
-.link-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
-.link-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.06rem;
-}
-
-.link-label {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
-.link-name {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-    /* ============ SCROLL TO TOP ============ */
-
-    .scroll-top {
-      position: fixed;
-      bottom: 18px;
-      right: 0;
-      z-index: 1500;
-      width: 52px;
-      height: 52px;
-      border-radius: 999px 0 0 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.22), rgba(0,0,0,0.8));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      cursor: pointer;
-      color: #f9fafb;
-    }
-
-    html[data-theme="light"] .scroll-top {
-      background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06), rgba(255,255,255,0.96));
-      border-color: rgba(0,0,0,0.15);
-      color: #111827;
-    }
-/* ===== CONTACT FORM ===== */
-.contact-form {
-  margin-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.contact-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.contact-row label {
-  font-size: 0.82rem;
-  font-weight: 500;
-  opacity: 0.85;
-}
-
-.contact-row input,
-.contact-row textarea {
-  padding: 0.75rem 1rem;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.03);
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-html[data-theme="light"] .contact-row input,
-html[data-theme="light"] .contact-row textarea {
-  background: rgba(255,255,255,0.8);
-  border-color: rgba(0,0,0,0.1);
-}
-
-.contact-row textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
-.contact-btn {
-  padding: 0.85rem 1rem;
-  border-radius: 999px;
-  border: none;
-  font-size: 0.95rem;
-  font-weight: 600;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--btn-preview-from), var(--btn-preview-to));
-  color: var(--btn-preview-text);
-  transition: opacity 0.18s ease;
+  box-shadow: -6px 12px 32px rgba(0,0,0,0.5);
+  z-index: 9999;
+
+  /* hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(8px);
+  transition: opacity .2s ease, transform .2s ease, filter .2s ease;
 }
 
-.contact-btn:hover {
-  opacity: 0.92;
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
 }
-/* ===== COMMENTS / REVIEWS ===== */
 
-.comments-list {
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
+.scroll-top.visible:hover {
+  filter: brightness(1.12);
+}
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (min-width: 720px) {
+      body {
+        padding: 2.3rem;
+      }
+
+      .page {
+        gap: 1.9rem;
+      }
+
+      .hero-card {
+        padding: 2rem 2rem 1.7rem;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-main {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.4fr);
+      }
+
+      .hero-title-block h1 {
+        font-size: 2.3rem;
+      }
+
+      .card {
+        padding: 1.7rem 1.7rem 1.9rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-card {
+        border-radius: 32px;
+      }
+
+      .card {
+        border-radius: 28px;
+      }
+
+      .main-header {
+        padding-inline: 1.5rem;
+      }
+    }
+    .preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: .6rem;
+}
+
+.preview-item {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-}
-
-.comment-card {
-  padding: 0.8rem 0.95rem;
-  border-radius: 14px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.9rem;
-}
-
-html[data-theme="light"] .comment-card {
-  background: rgba(255,255,255,0.9);
-  border-color: rgba(0,0,0,0.08);
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
+  gap: .7rem;
   align-items: center;
-  margin-bottom: 0.2rem;
 }
 
-.comment-name {
-  font-weight: 600;
-  font-size: 0.9rem;
+.preview-item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: transform .25s ease;
 }
 
-.comment-time {
-  font-size: 0.7rem;
-  opacity: 0.7;
+.preview-item img:hover {
+  transform: scale(1.02);
 }
 
-.comment-body {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* form */
-
-.comment-form {
-  margin-top: 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.comment-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.comment-row label {
-  font-size: 0.82rem;
-  font-weight: 500;
-  opacity: 0.85;
-}
-
-.comment-row input,
-.comment-row textarea {
-  padding: 0.7rem 0.9rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.03);
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-html[data-theme="light"] .comment-row input,
-html[data-theme="light"] .comment-row textarea {
-  background: rgba(255,255,255,0.9);
-  border-color: rgba(0,0,0,0.1);
-}
-
-.comment-row textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.comment-btn {
-  align-self: flex-start;
-  padding: 0.65rem 1.1rem;
+/* === FINAL PREVIEW BUTTON STYLE === */
+.preview-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: .55rem 1.35rem;
   border-radius: 999px;
-  border: none;
-  font-size: 0.9rem;
+  font-size: .82rem;
   font-weight: 600;
-  cursor: pointer;
-  background: linear-gradient(135deg,var(--btn-preview-from),var(--btn-preview-to));
-  color: var(--btn-preview-text);
-  transition: opacity 0.18s ease, transform 0.12s ease;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transition: background .25s ease, color .25s ease, transform .2s ease;
+  backdrop-filter: blur(16px);
 }
 
-.comment-btn:hover {
-  opacity: 0.93;
-  transform: translateY(-1px);
+/* DARK THEME: frosty grey, VERY visible */
+body:not(.light) .preview-btn {
+  background: rgba(120, 120, 130, 0.9) !important;   /* solid grey */
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.6) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.8) !important;
 }
-.comment-delete {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0 0 0 0.4rem;
+
+/* LIGHT THEME: keep soft neutral look */
+body.light .preview-btn {
+  background: rgba(0,0,0,0.08) !important;
+  color: #111 !important;
+  border: 1px solid rgba(0,0,0,0.14) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25) !important;
+}
+
+/* Hover in both themes */
+.preview-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+.icon-social {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+.icon-home {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+nav a,
+.nav-btn,
+.header-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  padding: .55rem 1.25rem;
   line-height: 1;
+  vertical-align: middle;
 }
-
-.comment-delete:hover {
-  color: var(--text);
+.icon-contact {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.icon-github {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.icon-instagram {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.icon-telegram {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.link-icon svg,
+.icon-email,
+.icon-whatsapp {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
   </style>
 </head>
 <body>
-  <div class="page" id="top">
+  <div class="page">
+    <!-- HEADER NAV -->
+    <header class="main-header">
+      <div class="logo"></div>
+      <nav>
+        <a href="#top"><svg
+  class="icon-home"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-5v-5h-4v5H5a1 1 0 0 1-1-1v-8.5z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg></a>
+        <a href="#projects">Project</a>
+        <a href="#links"><svg
+  class="icon-social"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <!-- outer circle -->
+  <circle
+    cx="12"
+    cy="12"
+    r="9"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+  />
+  <!-- @ sign -->
+  <text
+    x="12"
+    y="15"
+    text-anchor="middle"
+    font-size="11"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    fill="currentColor"
+  >
+    @
+  </text>
+</svg></a>
+        <a href="#contact"><svg
+  class="icon-contact"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    d="M3 6.5a2.5 2.5 0 0 1 2.5-2.5h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M3.5 7l8.5 6 8.5-6"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg></a>
+      </nav>
+    </header>
 
-    <!-- HERO CARD -->
-    <section class="hero">
-      <div class="card-shell">
-        <div class="card-inner">
-          <div class="card-top-row">
-            <div class="online-group">
-              <div class="online-badge">
-                <span class="online-dot"></span>
-                <span>ONLINE</span>
-              </div>
-              <span class="chip">DEV</span>
-            </div>
+    <!-- HERO -->
+    <section class="hero-card" id="top">
+      <div class="hero-top-row">
+        <div style="display:flex; gap:.5rem; align-items:center;">
+          <span class="hero-status"><span class="status-dot"></span>Offline</span>
+          <span class="hero-tag-pill">Dev</span>
+        </div>
+        
+      </div>
 
-            <div class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-              <div class="theme-pill">
-                <span class="theme-icon">⚪</span>
-              </div>
-            </div>
+      <div class="hero-main">
+        <div class="hero-left">
+          <div class="avatar">
+            <!-- Replace src with your own avatar if you want -->
+            <img src="https://iili.io/fxlFap9.jpg" alt="Ekansh avatar">
           </div>
-
-          <div class="hero-header-row">
-            <div class="hero-pfp">
-              <!-- replace background-image in CSS with your own PFP URL -->
+          <div class="hero-title-block">
+            <div class="hero-subtitle-label">Portfolio</div>
+            <h1>乇Ҝ卂几丂卄</h1>
+            <div class="hero-pills-row">
+              <span class="hero-pill">Developer</span>
+              <span class="hero-pill">Designer</span>
+              <span class="hero-pill">Student</span>
+              <span class="hero-pill">Tennis Player</span>
             </div>
-            <div class="hero-header-text">
-              <div class="section-label">Portfolio</div>
-              <h1 class="hero-title">Ekansh</h1>
-            </div>
-          </div>
-
-          <div class="tag-row">
-            <span class="tag">Developer</span>
-            <span class="tag">Designer</span>
-            <span class="tag">Student</span>
-            <span class="tag">Tennis Player</span>
-          </div>
-
-          <p class="hero-text">
-            <span id="heroTyped" class="hero-typed"></span><span class="hero-cursor">|</span>
-          </p>
-
-          <div class="hero-grid">
-            <div>
-              <div class="hero-grid-label">Current focus</div>
-              <div class="hero-grid-value">Frontend &amp; UI</div>
-            </div>
-            <div>
-              <div class="hero-grid-label">Based in</div>
-              <div class="hero-grid-value">Noida, Uttar Pradesh</div>
-            </div>
-            <div>
-              <div class="hero-grid-label">Stacks I like</div>
-              <div class="hero-grid-chips">
-                <span class="hero-grid-chip">HTML</span>
-                <span class="hero-grid-chip">CSS</span>
-                <span class="hero-grid-chip">JavaScript</span>
-              </div>
-            </div>
-            <div>
-              <div class="hero-grid-label">Currently</div>
-              <div class="hero-grid-chips">
-                <span class="hero-grid-chip">Learning React</span>
-                <span class="hero-grid-chip">Building side projects</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-bottom-bar">
-            <span>Role: Aspiring Developer &amp; Designer</span>
-            <span>Local time: <span id="localTime">--:--</span></span>
+            <p class="hero-desc">
+              <span id="heroTyped"></span>
+            </p>
           </div>
         </div>
+
+        <div class="hero-right">
+          <div class="mini-card">
+            <div class="mini-label">Current focus</div>
+            <div class="mini-value">Frontend &amp; UI · JEE prep</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Based in</div>
+            <div class="mini-value">Noida, Uttar Pradesh</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Stacks I like</div>
+            <div class="mini-value">HTML · CSS · JavaScript</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-label">Currently</div>
+            <div class="mini-value">Learning React · Building side projects</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-footer">
+        <span>Role: <strong>Aspiring Developer &amp; Designer</strong></span>
+        <span>Local time: <span id="localTime"></span></span>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section class="card-section" id="about">
-      <div class="section-eyebrow">About</div>
-      <h2>A little about me</h2>
-      <p>
-        I’m <strong>Ekansh</strong>, a Class 11 JEE aspirant with a passion for learning and building new things. Along with academics, I’m a junior developer who enjoys exploring the world of coding, app development, and 3D modelling. I’ve even won an interschool competition in 3D modelling, which motivates me to keep creating. <br>
-        Outside the tech world, I’m a big sports enthusiast, I love playing tennis, chess, badminton, and basically anything that challenges me to improve. I believe in staying curious, competitive, and constantly growing in every field I pursue.
-      </p>
+    <section class="card" id="about">
+      <div class="card-header">About</div>
+      <div class="card-title">A little about me</div>
+      <div class="card-subtitle">
+        Student, developer and a guy who likes building things on the internet.
+      </div>
+      <div class="about-body body-text">
+        <p>
+          I'm <strong>Ekansh</strong>, a Class 11 JEE aspirant with a passion for learning and building new things.
+          Along with academics, I'm a junior developer who enjoys exploring coding, app development
+          and 3D modelling.
+        </p>
+        <p>
+          I've won an interschool competition in 3D modelling, which keeps me motivated to keep creating.
+          Outside tech I love tennis, chess, badminton and anything that lets me compete, improve and
+          stay consistent.
+        </p>
+      </div>
     </section>
 
     <!-- PROJECTS -->
-    <section class="card-section" id="projects">
-      <div class="section-eyebrow">Projects</div>
-      <h2>Stuff I've built for fun</h2>
-      <p>Some tiny projects and experiments that helped me learn.</p>
+    <section class="card" id="projects">
+      <div class="card-header">Projects</div>
+      <div class="card-title">Stuff I've built for fun</div>
+      <div class="card-subtitle">
+        Tiny experiments that helped me learn layout, logic and UI.
+      </div>
 
       <div class="projects-list">
-        <article class="project-card">
-          <h3>Minimal Card Website</h3>
-          <p>A single-page website with a glassy card in the middle, theme switcher, and mobile-first layout.</p>
-          <div class="project-meta">Frontend · HTML · CSS · Responsive layout</div>
+        <article class="project-item">
+          <div class="project-title">Minimal Card Website</div>
+          <div class="project-desc">
+            A single-page website with a important infos of client for his business linking other imp sites...
+          </div>
+          <div class="project-tags">
+            <span class="pill-soft">Frontend</span>
+            <span class="pill-soft">HTML</span>
+            <span class="pill-soft">CSS</span>
+            <span class="pill-soft">Responsive</span>
+          </div>
         </article>
 
-        <article class="project-card">
-          <h3>Quiz / Study Helper</h3>
-          <p>A small quiz-style page to practice questions, track score and get quick feedback.</p>
-          <div class="project-meta">Web app · HTML · CSS · JavaScript</div>
+        <article class="project-item">
+          <div class="project-title">Quiz / Study Helper</div>
+          <div class="project-desc">
+            A small quiz-style page to practise questions, track score and get quick feedback.
+          </div>
+          <div class="project-tags">
+            <span class="pill-soft">Web app</span>
+            <span class="pill-soft">HTML</span>
+            <span class="pill-soft">JavaScript</span>
+          </div>
         </article>
 
-        <article class="project-card">
-          <h3>E-Commerce Website</h3>
-          <p>A small e-commerce page for 'Kanha Bakeries', with exploring, wishlisting and simple cart flow.</p>
-          <div class="project-meta">Web app · HTML · CSS · JavaScript</div>
+        <article class="project-item">
+          <div class="project-title">E-Commerce Website</div>
+          <div class="project-desc">
+            A simple e-commerce page for "Kanha Bakeries" with exploring, wishlisting and a basic cart flow.
+          </div>
+          <div class="project-tags">
+            <span class="pill-soft">Web app</span>
+            <span class="pill-soft">HTML</span>
+            <span class="pill-soft">CSS</span>
+            <span class="pill-soft">JavaScript</span>
+          </div>
         </article>
 
-        <article class="project-card">
-          <h3>Link Hub</h3>
-          <p>A lightweight “one page” where all important study or social links live in one clean place.</p>
-          <div class="project-meta">Utility · Responsive · Simple UI</div>
+        <article class="project-item">
+          <div class="project-title">Link Hub</div>
+          <div class="project-desc">
+            A small link page where all important study or social links live in one clean place.
+          </div>
+          <div class="project-tags">
+            <span class="pill-soft">Utility</span>
+            <span class="pill-soft">Responsive</span>
+            <span class="pill-soft">Simple UI</span>
+          </div>
         </article>
       </div>
     </section>
+<!-- PREVIEWS -->
+<section class="card" id="previews">
+  <div class="card-header">Previews</div>
+  <div class="card-title">Some of My sites</div>
+  <div class="card-subtitle">
+    Click an image to view the live website.
+  </div>
 
-    <!-- PREVIEW -->
-    <section class="card-section" id="preview">
-      <div class="preview-intro">
-        <div class="section-eyebrow">Preview</div>
-        <h2>Preview my built pages</h2>
-        <p>A few quick screenshots of projects I’ve built. Tap any card to open the live page in a new tab.</p>
+  <div class="preview-grid">
+    <!-- preview 1 -->
+    <div class="preview-item">
+      <a href="https://www.crustveganbakery.com" target="_blank">
+        <img src="https://iili.io/fxuzrIs.jpg" alt="Preview 1">
+      </a>
+      <a class="preview-btn" href="https://www.crustveganbakery.com" target="_blank">Open Site</a>
+    </div>
+
+    <!-- preview 2 -->
+    <div class="preview-item">
+      <a href="https://agecheckerbyekansh.vercel.app" target="_blank">
+        <img src="https://iili.io/fxukvpI.jpg" alt="Preview 2">
+      </a>
+      <a class="preview-btn" href="https://agecheckerbyekansh.vercel.app" target="_blank">Open Site</a>
+    </div>
+
+  
+
+    <!-- preview 4 -->
+    <div class="preview-item">
+      <a href="https://flappymodiji.vercel.app" target="_blank">
+        <img src="https://iili.io/fx5gnQp.jpg" alt="Preview 4">
+      </a>
+      <a class="preview-btn" href="https://flappymodiji.vercel.app" target="_blank">Open Site</a>
+    </div>
+  </div>
+</section>
+
+    <!-- LINKS -->
+    <section class="card" id="links">
+      <div class="card-header">Social</div>
+      <div class="card-title">Where to find me</div>
+      <div class="card-subtitle">
+        Same person, different platforms.
       </div>
 
-      <div class="preview-grid">
-
-        <article class="preview-card">
-          <div class="preview-image">
-            <img src="https://iili.io/fxuzrIs.jpg" alt="Project 1 preview">
+      <div class="links-grid">
+        <a class="link-item" href="https://github.com/lazyekansh" target="_blank">
+          <div class="link-icon"><svg
+  class="icon-github"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    d="M12 2.6a9.4 9.4 0 0 0-3 18.3c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.3-.3-4.7-1.1-4.7-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.8 0 0 .9-.3 2.9 1.1a9.1 9.1 0 0 1 5.2 0c2-1.4 2.9-1.1 2.9-1.1.5 1.5.2 2.5.1 2.8.7.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 2v2.9c0 .3.2.7.7.5A9.4 9.4 0 0 0 12 2.6Z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg></div>
+          <div class="link-labels">
+            <span class="link-name">GitHub</span>
+            <span class="link-url"></span>
           </div>
-          <a href="https://www.crustveganbakery.com" target="_blank" class="preview-btn">Open page ↗</a>
-        </article>
+        </a>
 
-        <article class="preview-card">
-          <div class="preview-image">
-            <img src="https://iili.io/fxukvpI.jpg" alt="Project 2 preview">
+        <a class="link-item" href="https://instagram.com/lazyekansh" target="_blank">
+          <div class="link-icon"><svg
+  class="icon-instagram"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <!-- Outer rounded square -->
+  <rect
+    x="3.8"
+    y="3.8"
+    width="16.4"
+    height="16.4"
+    rx="5"
+    ry="5"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Camera lens -->
+  <circle
+    cx="12"
+    cy="12"
+    r="4.3"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Small flash dot -->
+  <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+</svg></div>
+          <div class="link-labels">
+            <span class="link-name">Instagram</span>
+            <span class="link-url"></span>
           </div>
-          <a href="https://agecheckerbyekansh.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
-        </article>
+        </a>
 
-        <article class="preview-card">
-          <div class="preview-image">
-            <img src="https://iili.io/fxAIRJS.jpg" alt="Project 3 preview">
+        <a class="link-item" href="https://www.chess.com/member/lazyekansh" target="_blank">
+          <div class="link-icon">♟</div>
+          <div class="link-labels">
+            <span class="link-name">Chess.com</span>
+            <span class="link-url"></span>
           </div>
-          <a href="https://instabiobyekansh.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
-        </article>
+        </a>
 
-        <article class="preview-card">
-          <div class="preview-image">
-            <img src="https://iili.io/fx5gnQp.jpg" alt="Project 4 preview">
+        <a class="link-item" href="mailto:lazyekansh@gmail.com">
+          <div class="link-icon"><svg
+  class="icon-email"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <!-- Envelope body -->
+  <rect
+    x="4"
+    y="6.5"
+    width="16"
+    height="11"
+    rx="2"
+    ry="2"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Flap -->
+  <path
+    d="M5 8l7 5 7-5"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg></div>
+          <div class="link-labels">
+            <span class="link-name">Email</span>
+            <span class="link-url"></span>
           </div>
-          <a href="https://flappymodiji.vercel.app" target="_blank" class="preview-btn">Open page ↗</a>
-        </article>
+        </a>
 
+        <a class="link-item" href="https://t.me/lazyekansh" target="_blank">
+          <div class="link-icon"><svg
+  class="icon-telegram"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    d="M4.3 11.4 18.5 6.2c.6-.2 1.1.4.9 1l-3 10.9c-.2.7-1 .9-1.5.4l-3.3-3.9-2.2 1.9c-.4.3-.9.1-.9-.4l-.4-3.3-3.1-1c-.7-.2-.7-1.1 0-1.4Z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg></div>
+          <div class="link-labels">
+            <span class="link-name">Telegram</span>
+            <span class="link-url"></span>
+          </div>
+        </a>
+
+        <!-- Replace XXXXXXXXXX with your actual +63 number -->
+        <a class="link-item" href="https://wa.me/+639515655241" target="_blank">
+          <div class="link-icon"><svg
+  class="icon-whatsapp"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <!-- Outer bubble circle with small tail -->
+  <path
+    d="M5.2 18.3 6 15.7A7 7 0 1 1 12 19a7.1 7.1 0 0 1-3.2-.8l-3.6.1Z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Phone handset inside -->
+  <path
+    d="M10.4 9.1c-.1-.3-.3-.5-.6-.5H9.2c-.3 0-.6.2-.8.5-.2.3-.7 1-.7 2.2s.8 2.3 1 2.5c.1.2 1.4 2.1 3.5 2.8.5.2 1 .3 1.4.3.5 0 1-.2 1.2-.5.3-.4.4-.8.3-1 0-.2-.2-.3-.5-.4l-1.4-.7c-.2-.1-.4-.1-.6.1l-.4.5c-.1.1-.3.2-.5.1-.3-.1-1-.4-1.6-1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.5l.3-.3c.1-.1.2-.3.2-.4 0-.1 0-.3-.1-.5l-.7-1.8Z"
+    fill="currentColor"
+  />
+</svg></div>
+          <div class="link-labels">
+            <span class="link-name">WhatsApp</span>
+            <span class="link-url"></span>
+          </div>
+        </a>
       </div>
     </section>
 
     <!-- CHESS -->
-    <section class="chess-card" id="chess">
-      <div class="section-eyebrow">More bout chess</div>
-      <h2>My Chess Ratings</h2>
-      <p>Last updated: Nov 2025</p>
+    <section class="card" id="chess">
+      <div class="card-header">Chess</div>
+      <div class="card-title">Rating vibes</div>
+      <div class="card-subtitle">
+        Current ratings + how my rapid has grown over time.
+      </div>
 
-      <div class="chess-table">
+      <!-- bar ratings -->
+      <div class="chess-graph-wrapper">
         <div class="chess-row">
-          <span class="chess-mode">Rapid · Chess.com</span>
-          <span class="chess-elo">1478</span>
+          <div class="chess-label">Bullet</div>
+          <div class="chess-track">
+            <div class="chess-fill" style="--w: 55%;"></div>
+          </div>
+          <div class="chess-score">000</div>
         </div>
         <div class="chess-row">
-          <span class="chess-mode">Blitz · Chess.com</span>
-          <span class="chess-elo">1220</span>
+          <div class="chess-label">Blitz</div>
+          <div class="chess-track">
+            <div class="chess-fill" style="--w: 63%;"></div>
+          </div>
+          <div class="chess-score">1323</div>
         </div>
         <div class="chess-row">
-          <span class="chess-mode">Bullet · Chess.com</span>
-          <span class="chess-elo">0</span>
+          <div class="chess-label">Rapid</div>
+          <div class="chess-track">
+            <div class="chess-fill" style="--w: 72%;"></div>
+          </div>
+          <div class="chess-score">1478</div>
         </div>
         <div class="chess-row">
-          <span class="chess-mode">Puzzles · Chess.com</span>
-          <span class="chess-elo">1639</span>
+          <div class="chess-label">Puzzles</div>
+          <div class="chess-track">
+            <div class="chess-fill" style="--w: 80%;"></div>
+          </div>
+          <div class="chess-score">1639</div>
         </div>
       </div>
 
-      <div class="chess-graph">
-        <div class="chess-graph-header">
-          <span>Rapid · Chess.com</span>
-          <span class="chess-graph-latest">1478</span>
-        </div>
-        <svg viewBox="0 0 280 110" class="chess-graph-svg" aria-hidden="true">
-          <!-- rough mapping of your rating history to a simple line -->
-          <polyline
-            points="
-              10,100
-              47,70
-              84,60
-              121,46
-              158,38
-              195,30
-              232,24
-              269,36
-            "
-          />
-          <circle cx="269" cy="36" r="3" />
-        </svg>
-        <div class="chess-graph-labels">
-          <span>2021</span>
-          <span>2022</span>
-          <span>2023</span>
-          <span>Jun ’24</span>
-          <span>Sep ’24</span>
-          <span>Dec ’24</span>
-          <span>Mar ’25</span>
-          <span>Nov ’25</span>
-        </div>
-      </div>
-
-      <div class="chess-links">
-        <a href="https://www.chess.com/member/lazyekansh" target="_blank">View Chess.com profile ↗</a>
-      </div>
+      <!-- rapid rating over time graph -->
+      <div class="chess-line-graph">
+  <div class="chess-line-label">Rapid rating over time</div>
+  <svg viewBox="0 0 100 40" preserveAspectRatio="xMidYMid meet">
+    <!-- baseline -->
+    <polyline points="4,32 96,32"
+              fill="none"
+              stroke="rgba(0,0,0,0.15)"
+              stroke-width="0.6" />
+    <!-- rating line: 700-800-950-1080-1275-1343-1565-1623-1478 -->
+    <polyline
+      points="6,30.0 17,27.8 28,24.6 39,21.8 50,17.5 61,16.1 72,11.3 83,10.0 94,13.1"
+      fill="none"
+      stroke="rgba(79,124,255,0.9)"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- points -->
+    <circle cx="6"  cy="30.0" r="1.8" fill="#4f7cff" />
+    <circle cx="17" cy="27.8" r="1.8" fill="#4f7cff" />
+    <circle cx="28" cy="24.6" r="1.8" fill="#4f7cff" />
+    <circle cx="39" cy="21.8" r="1.8" fill="#4f7cff" />
+    <circle cx="50" cy="17.5" r="1.8" fill="#4f7cff" />
+    <circle cx="61" cy="16.1" r="1.8" fill="#4f7cff" />
+    <circle cx="72" cy="11.3" r="1.8" fill="#4f7cff" />
+    <circle cx="83" cy="10.0" r="1.8" fill="#4f7cff" />
+    <circle cx="94" cy="13.1" r="1.8" fill="#4f7cff" />
+    <!-- simple labels -->
+    <text x="6"  y="36" font-size="3" fill="rgba(0,0,0,0.45)">700</text>
+    <text x="28" y="36" font-size="3" fill="rgba(0,0,0,0.45)">950</text>
+    <text x="50" y="36" font-size="3" fill="rgba(0,0,0,0.45)">1275</text>
+    <text x="72" y="36" font-size="3" fill="rgba(0,0,0,0.45)">1565</text>
+    <text x="88" y="10" font-size="3.2" fill="rgba(0,0,0,0.55)">1478 now</text>
+  </svg>
+</div>
     </section>
 
-    <!-- LINKS -->
-    <section class="card-section" id="links">
-  <div class="section-eyebrow">Links</div>
-  <h2>Where to find me</h2>
-  <p>Same person, different platforms.</p>
-
-  <div class="links-list">
-
-    <!-- GitHub -->
-    <a class="link-row" href="https://github.com/lazyekansh" target="_blank" rel="noopener">
-      <div class="link-icon">
-        <!-- GitHub icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2C6.48 2 2 6.6 2 12.26c0 4.5 2.87 8.32 6.85 9.67.5.1.68-.23.68-.5
-          0-.24-.01-.87-.01-1.7-2.49.55-3.02-1.22-3.02-1.22-.45-1.18-1.1-1.5-1.1-1.5-.9-.64.07-.63.07-.63
-          1 .07 1.53 1.07 1.53 1.07.89 1.57 2.34 1.12 2.9.86.09-.66.35-1.12.63-1.38-1.99-.23-4.08-1.03-4.08-4.6
-          0-1.02.35-1.86.93-2.51-.09-.23-.4-1.17.09-2.44 0 0 .76-.25 2.5.96a8.25 8.25 0 0 1 4.56 0c1.73-1.21 2.49-.96 2.49-.96.49 1.27.18 2.21.09 2.44.58.65.93 1.49.93 2.51
-          0 3.59-2.1 4.36-4.1 4.59.36.32.68.95.68 1.92 0 1.39-.01 2.51-.01 2.85 0 .27.18.61.69.5A10.01 10.01 0 0 0 22 12.26C22 6.6 17.52 2 12 2Z"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">GitHub</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-    <!-- Instagram -->
-    <a class="link-row" href="https://instagram.com/lazyekansh" target="_blank" rel="noopener">
-      <div class="link-icon">
-        <!-- Instagram icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
-          <circle cx="12" cy="12" r="4.2"/>
-          <circle cx="17.3" cy="6.7" r="1.2"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">Instagram</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-    <!-- Chess.com -->
-    <a class="link-row" href="https://www.chess.com/member/lazyekansh" target="_blank" rel="noopener">
-      <div class="link-icon">
-        <!-- Chess rook icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 3h3v3h2V3h3v3h2v5l-1.5 1.5V16H8.5v-3.5L7 11V6h2V3Zm1.5 15h7l1 3H7.5l1-3Z"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">Chess.com</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-    <!-- Email -->
-    <a class="link-row" href="mailto:lazyekansh@gmail.com">
-      <div class="link-icon">
-        <!-- Envelope icon -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
-          <path d="M5 7.5 12 12l7-4.5"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">Email</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-    <!-- Telegram -->
-    <a class="link-row" href="https://t.me/lazyekansh" target="_blank" rel="noopener">
-      <div class="link-icon">
-        <!-- Telegram paper plane -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 11.5 19.3 4.7c.7-.32 1.4.35 1.16 1.05l-3.1 9.27c-.2.6-.91.86-1.47.53l-3.45-2.08-1.74 2.96
-          c-.14.25-.39.4-.67.42-.28.01-.55-.12-.72-.35L7.6 13l-3.1-1.3c-.89-.37-.88-1.63.03-2.2Z"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">Telegram</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-    <!-- WhatsApp -->
-    <a class="link-row" href="https://wa.me/639515655241" target="_blank" rel="noopener">
-      <div class="link-icon">
-        <!-- WhatsApp bubble -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12.04 3.1c-4.9 0-8.9 3.9-8.9 8.7 0 1.53.41 3.01 1.2 4.33L3 21l4-1.28a9.1 9.1 0 0 0 5.04 1.5h.01
-          c4.9 0 8.9-3.9 8.9-8.7 0-2.33-.93-4.52-2.62-6.16A8.9 8.9 0 0 0 12.04 3.1Zm0 2a6.73 6.73 0 0 1 4.8 1.94A6.6 6.6 0 0 1 19 12.5
-          c0 3.69-3.03 6.7-6.76 6.7-1.18 0-2.33-.3-3.35-.86l-.24-.13-2.37.76.78-2.27-.15-.24a6.55 6.55 0 0 1-1.02-3.46
-          6.64 6.64 0 0 1 6.15-6.9h0Zm-2.1 2.83c-.2-.43-.41-.44-.6-.45-.16-.01-.34-.01-.52-.01-.18 0-.47.07-.71.34-.24.26-.93.9-.93 2.2
-          0 1.29.95 2.54 1.09 2.72.13.18 1.83 2.9 4.5 3.95 2.23.88 2.68.73 3.17.69.48-.04 1.56-.63 1.78-1.25.22-.61.22-1.13.16-1.25
-          -.07-.12-.25-.2-.52-.35-.27-.16-1.56-.86-1.8-.96-.24-.09-.41-.14-.6.14-.18.26-.69.83-.85 1-.16.18-.31.2-.58.05
-          -1.57-.77-2.6-2.72-2.68-2.92-.08-.2-.01-.3.12-.44.13-.14.29-.34.44-.5.15-.17.2-.29.3-.48.1-.2.05-.37-.01-.53
-          -.05-.16-.46-1.14-.66-1.57Z"/>
-        </svg>
-      </div>
-      <div class="link-meta">
-        <div class="link-label">WhatsApp</div>
-        <div class="link-name"></div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-    <!-- COMMENTS / REVIEWS -->
-    <section class="card-section" id="comments">
-      <div class="section-eyebrow">Comments</div>
-      <h2>Comments &amp; reviews</h2>
-      <p>Drop a short comment or review about this website or my projects.</p>
-
-      <div id="commentsList" class="comments-list">
-        <!-- comments will be injected here by JS -->
+    <!-- COMMENTS -->
+    <section class="card" id="comments">
+      <div class="card-header">Comments</div>
+      <div class="card-title">Comments &amp; reviews</div>
+      <div class="card-subtitle">
+        Drop a short comment or review about this website or my projects.
       </div>
 
-      <form id="commentForm" class="comment-form">
-        <div class="comment-row">
+      <p class="comments-empty" id="commentsEmpty">
+        No comments yet. Be the first one to write something!
+      </p>
+
+      <ul class="comments-list" id="commentsList"></ul>
+
+      <form id="commentForm" class="form-grid">
+        <div class="field">
           <label for="cmName">Your name</label>
-          <input type="text" id="cmName" placeholder="Your name" required>
+          <input id="cmName" name="name" placeholder="Anonymous">
         </div>
-
-        <div class="comment-row">
-          <label for="cmText">Comment</label>
-          <textarea id="cmText" placeholder="Write something nice (or helpful)…" required></textarea>
+        <div class="field">
+          <label for="cmText">Your comment</label>
+          <textarea id="cmText" name="text" placeholder="I liked the links section…"></textarea>
         </div>
-
-        <button type="submit" class="comment-btn">Post comment</button>
+        <button class="btn-primary" type="submit">Send comment</button>
+        <p class="form-note">
+          Comments are stored only in your own browser (localStorage). Clear site data = comments reset.
+        </p>
       </form>
     </section>
-    
-<!-- CONTACT -->
-<section class="card-section" id="contact">
-  <div class="section-eyebrow">Contact</div>
-  <h2>Contact Me</h2>
-  <p>If you want to reach out, drop your name, email and message. I’d love to hear from you.</p>
 
-  <form id="contactForm" class="contact-form">
-    <div class="contact-row">
-      <label>Full name</label>
-      <input type="text" id="cName" placeholder="Your name" required>
-    </div>
+    <!-- CONTACT (FORM) -->
+    <section class="card" id="contact">
+      <div class="card-header">Contact</div>
+      <div class="card-title">Let’s get in touch</div>
+      <div class="card-subtitle">
+        <span id="contactTyped"></span>
+      </div>
+     
 
-    <div class="contact-row">
-      <label>Email address</label>
-      <input type="email" id="cEmail" placeholder="you@example.com" required>
-    </div>
+      <form id="contactForm" class="form-grid">
+        <div class="field">
+          <label for="ctName">Your name</label>
+          <input id="ctName" name="ctName" placeholder="..." required>
+        </div>
+        <div class="field">
+          <label for="ctEmail">Your email</label>
+          <input id="ctEmail" name="ctEmail" placeholder="yourmail@xmail.com">
+        </div>
+        <div class="field">
+          <label for="ctMsg">Your message</label>
+          <textarea id="ctMsg" name="ctMsg" placeholder="Write your doubt, feedback or collab idea..." required></textarea>
+        </div>
+        <button class="btn-primary" type="submit">Send message</button>
+        <p class="form-note">
+          Thanx <code>for</code> visiting! 
+        </p>
+      </form>
+    </section>
 
-    <div class="contact-row">
-      <label>Message</label>
-      <textarea id="cMsg" placeholder="Write your message…" required></textarea>
-    </div>
-
-    <button type="submit" class="contact-btn">Send message ✦</button>
-  </form>
-</section>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      Made by Ekansh • 2021 
+    </footer>
   </div>
 
-  <!-- SCROLL TO TOP -->
-  <button class="scroll-top"
-    onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
-    aria-label="Back to top">↑</button>
+  <button class="scroll-top" aria-label="Scroll to top"
+          onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    ↑
+  </button>
 
   <script>
-    // Theme toggle
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById("themeToggle");
-      const icon = btn.querySelector(".theme-icon");
+   // Theme toggle (default = light on first visit)
+(function () {
+  const toggle = document.getElementById("themeToggle");
+  if (!toggle) return;
 
-      function applyTheme(theme) {
-        root.setAttribute("data-theme", theme);
-        localStorage.setItem("theme", theme);
-        if (theme === "dark") {
-          icon.textContent = "⚪"; // show sun -> click to go light
-        } else {
-          icon.textContent = "⚫"; // show moon -> click to go dark
-        }
-      }
+  let stored = localStorage.getItem("ek-theme");
 
-      let saved = localStorage.getItem("theme");
-      if (!saved) {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        saved = prefersDark ? "dark" : "light";
-      }
-      applyTheme(saved);
+  // If nothing saved yet → first visit → use LIGHT
+  if (!stored) {
+    document.body.classList.add("light");
+    stored = "light";
+    localStorage.setItem("ek-theme", "light");
+  } else {
+    // If something saved → respect it
+    document.body.classList.toggle("light", stored === "light");
+  }
 
-      btn.addEventListener("click", function () {
-        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        applyTheme(next);
-      });
-    })();
+  toggle.addEventListener("click", function () {
+    document.body.classList.toggle("light");
+    const nextTheme = document.body.classList.contains("light")
+      ? "light"
+      : "dark";
+    localStorage.setItem("ek-theme", nextTheme);
+  });
+})();
 
-    // Local time (simple)
+    // Local time
     (function () {
       const el = document.getElementById("localTime");
+      if (!el) return;
+
       function update() {
         const d = new Date();
-        const h = d.getHours().toString().padStart(2,"0");
-        const m = d.getMinutes().toString().padStart(2,"0");
+        const h = d.getHours().toString().padStart(2, "0");
+        const m = d.getMinutes().toString().padStart(2, "0");
         el.textContent = h + ":" + m;
       }
+
       update();
       setInterval(update, 60000);
     })();
 
-    // Typing animation
+    // Typing animations (hero + contact)
     (function () {
-      const target = document.getElementById("heroTyped");
-      const text = "I enjoy turning ideas into clean & minimal experiences on the internet.";
-      let index = 0;
-
-      function type() {
-        if (!target) return;
-        if (index <= text.length) {
-          target.textContent = text.slice(0, index);
-          index++;
-          setTimeout(type, 40);
+      function typeText(id, text, speed) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let index = 0;
+        function step() {
+          if (index <= text.length) {
+            el.textContent = text.slice(0, index);
+            index++;
+            setTimeout(step, speed);
+          }
         }
+        step();
       }
 
-      type();
+      typeText(
+        "heroTyped",
+        "I'm Ekansh, a Class 11 JEE aspirant and junior developer, into coding, app development and 3D modelling with an interschool award.",
+        35
+      );
+
+      typeText(
+        "contactTyped",
+        "Open to doubts, feedback, small collabs or just a quick hello.",
+        45
+      );
     })();
-    // Comments / reviews (localStorage per browser)
+
+    // Comments (localStorage per browser)
     (function () {
       const listEl = document.getElementById("commentsList");
       const form = document.getElementById("commentForm");
+      const emptyText = document.getElementById("commentsEmpty");
       if (!listEl || !form) return;
 
       const NAME_ID = "cmName";
       const TEXT_ID = "cmText";
-      const STORAGE_KEY = "ekansh_site_comments_v1";
-
-      function safeText(str) {
-        return str.replace(/[<>&]/g, function (c) {
-          return ({
-            "<": "&lt;",
-            ">": "&gt;",
-            "&": "&amp;"
-          })[c] || c;
-        });
-      }
+      const STORAGE_KEY = "ekansh-site-comments-v1";
 
       function loadComments() {
         try {
@@ -1547,86 +1492,65 @@ html[data-theme="light"] .comment-row textarea {
         }
       }
 
-      function saveComments(comments) {
+      function saveComments(arr) {
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-        } catch (e) {
-          // ignore quota errors
-        }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        } catch (e) {}
       }
 
-      function formatTime(date) {
-        const d = new Date(date);
-        if (isNaN(d.getTime())) return "";
-        const day = d.getDate().toString().padStart(2, "0");
-        const month = (d.getMonth() + 1).toString().padStart(2, "0");
-        const year = d.getFullYear().toString().slice(-2);
-        const hrs = d.getHours().toString().padStart(2, "0");
-        const mins = d.getMinutes().toString().padStart(2, "0");
-        return `${day}/${month}/${year} · ${hrs}:${mins}`;
-      }
-
-      function renderComments(commentsArr) {
+      function renderComments(arr) {
         listEl.innerHTML = "";
-        if (!commentsArr.length) {
-          const empty = document.createElement("div");
-          empty.style.fontSize = "0.85rem";
-          empty.style.opacity = "0.8";
-          empty.textContent = "No comments yet. Be the first one to write something!";
-          listEl.appendChild(empty);
+        if (!arr.length) {
+          emptyText.style.display = "block";
           return;
         }
+        emptyText.style.display = "none";
 
-        commentsArr.forEach(function (c, idx) {
-          const card = document.createElement("article");
-          card.className = "comment-card";
+        arr.forEach(function (c, idx) {
+          const li = document.createElement("li");
+          li.className = "comment-card";
 
           const header = document.createElement("div");
           header.className = "comment-header";
 
           const left = document.createElement("div");
+          left.innerHTML =
+            '<span class="comment-name"></span><span class="comment-meta"></span>';
 
-          const name = document.createElement("span");
-          name.className = "comment-name";
-          name.innerHTML = safeText(c.name || "Anonymous");
+          const nameEl = left.querySelector(".comment-name");
+          const metaEl = left.querySelector(".comment-meta");
 
-          const time = document.createElement("span");
-          time.className = "comment-time";
-          time.textContent = formatTime(c.createdAt);
+          nameEl.textContent = c.name || "Anonymous";
+          const date = c.createdAt ? new Date(c.createdAt) : new Date();
+          metaEl.textContent = " · " + date.toLocaleString();
 
-          left.appendChild(name);
-          left.appendChild(document.createTextNode(" "));
-          // small separator dot
-          const dot = document.createElement("span");
-          dot.textContent = "• ";
-          dot.style.fontSize = "0.8rem";
-          dot.style.opacity = "0.7";
-          left.appendChild(dot);
-          left.appendChild(time);
+          const delBtn = document.createElement("button");
+          delBtn.textContent = "×";
+          delBtn.title = "Delete this comment (only on this device)";
+          delBtn.style.border = "none";
+          delBtn.style.background = "transparent";
+          delBtn.style.cursor = "pointer";
+          delBtn.style.fontSize = "1rem";
 
-          const del = document.createElement("button");
-          del.type = "button";
-          del.className = "comment-delete";
-          del.textContent = "×";
-          del.title = "Delete this comment (only on this device)";
-          del.addEventListener("click", function () {
-            commentsArr.splice(idx, 1);
-            saveComments(commentsArr);
-            renderComments(commentsArr);
+          delBtn.addEventListener("click", function () {
+            arr.splice(idx, 1);
+            saveComments(arr);
+            renderComments(arr);
           });
 
           header.appendChild(left);
-          header.appendChild(del);
+          header.appendChild(delBtn);
 
           const body = document.createElement("p");
           body.className = "comment-body";
-          body.innerHTML = safeText(c.text);
+          body.textContent = c.text || "";
 
-          card.appendChild(header);
-          card.appendChild(body);
-          listEl.appendChild(card);
+          li.appendChild(header);
+          li.appendChild(body);
+          listEl.appendChild(li);
         });
       }
+
       let comments = loadComments();
       renderComments(comments);
 
@@ -1642,13 +1566,54 @@ html[data-theme="light"] .comment-row textarea {
           createdAt: new Date().toISOString()
         };
 
-        comments.unshift(newComment); // newest on top
+        comments.unshift(newComment);
         saveComments(comments);
         renderComments(comments);
-
         form.reset();
       });
     })();
+
+    // Contact form -> opens email app with mailto
+    (function () {
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("ctName").value.trim() || "Someone";
+        const from = document.getElementById("ctEmail").value.trim();
+        const msg = document.getElementById("ctMsg").value.trim();
+        if (!msg) return;
+
+        const subject = encodeURIComponent("Portfolio contact from " + name);
+        let body = msg;
+        if (from) {
+          body += "\n\nReply to: " + from;
+        }
+        const mailto = "mailto:lazyekansh@gmail.com?subject=" + subject +
+                       "&body=" + encodeURIComponent(body);
+        window.location.href = mailto;
+        form.reset();
+      });
+    })();
+  // ...your existing JS...
+
+  // Auto-hide scroll-to-top button logic
+  (function () {
+    const btn = document.querySelector(".scroll-top");
+    if (!btn) return;
+
+    function handleScroll() {
+      if (window.scrollY > 300) {
+        btn.classList.add("visible");
+      } else {
+        btn.classList.remove("visible");
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // run once on load
+  })();
   </script>
 </body>
 </html>
